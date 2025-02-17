@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop and Fertilizer Recommendation System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-4">Crop and Fertilizer Recommendation System</h1>
+  
+  <!-- Crop Recommendation Section -->
+  <div class="form-section">
+    <h2>Crop Recommendation</h2>
+    <form action="/predict_crop" method="POST">
+      <div class="form-group">
+        <label for="N">Nitrogen (N):</label>
+        <input type="number" step="any" class="form-control" id="N" name="N" placeholder="Enter nitrogen level" required>
+      </div>
+      <div class="form-group">
+        <label for="P">Phosphorus (P):</label>
+        <input type="number" step="any" class="form-control" id="P" name="P" placeholder="Enter phosphorus level" required>
+      </div>
+      <div class="form-group">
+        <label for="K">Potassium (K):</label>
+        <input type="number" step="any" class="form-control" id="K" name="K" placeholder="Enter potassium level" required>
+      </div>
+      <div class="form-group">
+        <label for="temperature">Temperature (°C):</label>
+        <input type="number" step="any" class="form-control" id="temperature" name="temperature" placeholder="Enter temperature" required>
+      </div>
+      <div class="form-group">
+        <label for="humidity">Humidity (%):</label>
+        <input type="number" step="any" class="form-control" id="humidity" name="humidity" placeholder="Enter humidity" required>
+      </div>
+      <div class="form-group">
+        <label for="ph">Soil pH:</label>
+        <input type="number" step="any" class="form-control" id="ph" name="ph" placeholder="Enter soil pH" required>
+      </div>
+      <div class="form-group">
+        <label for="rainfall">Rainfall (mm):</label>
+        <input type="number" step="any" class="form-control" id="rainfall" name="rainfall" placeholder="Enter rainfall" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Predict Crop</button>
+    </form>
+    {% if crop_result %}
+      <div class="alert alert-success mt-4">
+        <strong>Recommended Crop:</strong> {{ crop_result }}
+      </div>
+    {% endif %}
+  </div>
+  
+  <hr>
+  
+  <!-- Fertilizer Recommendation Section -->
+  <div class="form-section">
+    <h2>Fertilizer Recommendation</h2>
+    <form action="/predict_fert" method="POST">
+      <div class="form-group">
+        <label for="soil_type">Soil Type (Encoded):</label>
+        <input type="number" step="any" class="form-control" id="soil_type" name="soil_type" placeholder="Enter encoded soil type" required>
+      </div>
+      <div class="form-group">
+        <label for="crop_type">Crop Type (Encoded):</label>
+        <input type="number" step="any" class="form-control" id="crop_type" name="crop_type" placeholder="Enter encoded crop type" required>
+      </div>
+      <div class="form-group">
+        <label for="temperature_fert">Temperature (°C):</label>
+        <input type="number" step="any" class="form-control" id="temperature_fert" name="temperature_fert" placeholder="Enter temperature" required>
+      </div>
+      <div class="form-group">
+        <label for="humidity_fert">Humidity (%):</label>
+        <input type="number" step="any" class="form-control" id="humidity_fert" name="humidity_fert" placeholder="Enter humidity" required>
+      </div>
+      <div class="form-group">
+        <label for="moisture">Moisture (%):</label>
+        <input type="number" step="any" class="form-control" id="moisture" name="moisture" placeholder="Enter moisture level" required>
+      </div>
+      <div class="form-group">
+        <label for="nitrogen">Nitrogen:</label>
+        <input type="number" step="any" class="form-control" id="nitrogen" name="nitrogen" placeholder="Enter nitrogen level" required>
+      </div>
+      <div class="form-group">
+        <label for="phosphorus">Phosphorus:</label>
+        <input type="number" step="any" class="form-control" id="phosphorus" name="phosphorus" placeholder="Enter phosphorus level" required>
+      </div>
+      <div class="form-group">
+        <label for="potassium">Potassium:</label>
+        <input type="number" step="any" class="form-control" id="potassium" name="potassium" placeholder="Enter potassium level" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Predict Fertilizer</button>
+    </form>
+    {% if fert_result %}
+      <div class="alert alert-success mt-4">
+        <strong>Recommended Fertilizer:</strong> {{ fert_result }}
+      </div>
+    {% endif %}
+  </div>
+  
+</div>
+</body>
+</html>
